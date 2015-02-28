@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.webdriver.common.action_chains import ActionChains
-import time, unittest
+import unittest
 
 def is_alert_present(wd):
     try:
@@ -16,9 +15,10 @@ class addGroup(unittest.TestCase):
         self.wd.implicitly_wait(60)
     
     def test_addGroup(self):
-        success = True
         wd = self.wd
+        # open
         wd.get("http://localhost/addressbook/")
+        # login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("Admin")
@@ -27,8 +27,11 @@ class addGroup(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys("secret")
         wd.find_element_by_css_selector("input[type=\"submit\"]").click()
         wd.find_element_by_id("header").click()
+        # open groups page
         wd.find_element_by_link_text("groups").click()
+        # new group
         wd.find_element_by_name("new").click()
+        # edit group fields
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
         wd.find_element_by_name("group_name").send_keys("testgroup")
@@ -38,15 +41,13 @@ class addGroup(unittest.TestCase):
         wd.find_element_by_name("group_footer").click()
         wd.find_element_by_name("group_footer").clear()
         wd.find_element_by_name("group_footer").send_keys("End of new group")
+        # create group
         wd.find_element_by_name("submit").click()
-        wd.find_element_by_id("content").click()
+        # return to the group page
         wd.find_element_by_link_text("group page").click()
-        wd.find_element_by_id("header").click()
-        wd.find_element_by_id("top").click()
+        # logout
         wd.find_element_by_link_text("Logout").click()
-        wd.find_element_by_name("user").click()
-        self.assertTrue(success)
-    
+
     def tearDown(self):
         self.wd.quit()
 
