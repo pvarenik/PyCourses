@@ -10,7 +10,7 @@ def is_alert_present(wd):
     except:
         return False
 
-class addGroup(unittest.TestCase):
+class add_group(unittest.TestCase):
     def setUp(self):
         self.wd = WebDriver()
         self.wd.implicitly_wait(60)
@@ -28,10 +28,10 @@ class addGroup(unittest.TestCase):
         wd.find_element_by_css_selector("input[type=\"submit\"]").click()
         wd.find_element_by_id("header").click()
 
-    def openGroupsPage(self, wd):
+    def open_groups_page(self, wd):
         wd.find_element_by_link_text("groups").click()
 
-    def createGroup(self, wd, group):
+    def create_group(self, wd, group):
         # new group
         wd.find_element_by_name("new").click()
         # edit group fields
@@ -47,7 +47,7 @@ class addGroup(unittest.TestCase):
         # create group
         wd.find_element_by_name("submit").click()
 
-    def returnToTheGroupPage(self, wd):
+    def return_to_the_group_page(self, wd):
         wd.find_element_by_link_text("group page").click()
 
     def logout(self, wd):
@@ -57,18 +57,18 @@ class addGroup(unittest.TestCase):
         wd = self.wd
         self.open(wd)
         self.login(wd, username="Admin", password="secret")
-        self.openGroupsPage(wd)
-        self.createGroup(wd, Group(name="testgroup", header="New Group", footer="End of new group"))
-        self.returnToTheGroupPage(wd)
+        self.open_groups_page(wd)
+        self.create_group(wd, Group(name="testgroup", header="New Group", footer="End of new group"))
+        self.return_to_the_group_page(wd)
         self.logout(wd)
 
     def test_empty_addGroup(self):
         wd = self.wd
         self.open(wd)
         self.login(wd, username="Admin", password="secret")
-        self.openGroupsPage(wd)
-        self.createGroup(wd, Group(name="", header="" , footer=""))
-        self.returnToTheGroupPage(wd)
+        self.open_groups_page(wd)
+        self.create_group(wd, Group(name="", header="" , footer=""))
+        self.return_to_the_group_page(wd)
         self.logout(wd)
 
     def tearDown(self):

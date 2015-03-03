@@ -10,7 +10,7 @@ def is_alert_present(wd):
     except:
         return False
 
-class addContact(unittest.TestCase):
+class add_contact(unittest.TestCase):
     def setUp(self):
         self.wd = WebDriver()
         self.wd.implicitly_wait(60)
@@ -27,26 +27,29 @@ class addContact(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_css_selector("input[type=\"submit\"]").click()
 
-    def createAccount(self, wd, contact):
+    def create_account(self, wd, contact):
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").send_keys(contact.name)
+        wd.find_element_by_name("middlename").send_keys(contact.middlename)
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
+        wd.find_element_by_name("nickname").send_keys(contact.nickname)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
-    def test_addContact(self):
+    def test_add_contact(self):
         wd = self.wd
         self.open(wd)
         self.login(wd, username="Admin", password="secret")
-        self.createAccount(wd, Contact("test contact"))
+        self.create_account(wd, Contact("first", "middle", "last", "nick"))
         self.logout(wd)
 
-    def test_empty_addContact(self):
+    def test_add_empty_contact(self):
         wd = self.wd
         self.open(wd)
         self.login(wd, username="Admin", password="secret")
-        self.createAccount(wd, Contact(""))
+        self.create_account(wd, Contact("", "", "", ""))
         self.logout(wd)
     
     def tearDown(self):
