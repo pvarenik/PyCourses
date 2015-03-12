@@ -14,10 +14,13 @@ class ContactHelper:
         wd.find_element_by_name("lastname").send_keys(contact.lastname)
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        wd.get("http://localhost/addressbook/")
 
     def delete_first_contact(self):
         wd = self.app.wd
         #select
         wd.find_element_by_name("selected[]").click()
         #delete
-        wd.find_element_by_xpath("//div[input/@value='Delete']")
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+        wd.get("http://localhost/addressbook/")
