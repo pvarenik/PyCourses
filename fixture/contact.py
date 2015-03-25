@@ -19,6 +19,7 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        wd.get("http://localhost/addressbook/")
         #select
         wd.find_element_by_name("selected[]").click()
         #delete
@@ -36,3 +37,8 @@ class ContactHelper:
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
         wd.find_element_by_name("update").click()
         wd.get("http://localhost/addressbook/")
+
+    def count(self):
+        wd = self.app.wd
+        wd.get("http://localhost/addressbook/")
+        return len(wd.find_elements_by_name("selected[]"))
