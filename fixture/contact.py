@@ -23,21 +23,30 @@ class ContactHelper:
         self.go_to_contacts()
         self.contact_cache = None
 
-    def delete_first_contact(self):
+    def select_contact_by_id(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
+    def delete_contact_by_id(self, index):
         wd = self.app.wd
         self.go_to_contacts()
         #select
-        wd.find_element_by_name("selected[]").click()
+        self.select_contact_by_id(index)
         #delete
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.go_to_contacts()
         self.contact_cache = None
 
-    def edit(self, contact):
+    def edit(self, contact, index):
         wd = self.app.wd
         self.go_to_contacts()
-        wd.find_element_by_xpath("//img[@title='Edit']").click()
+        self.select_contact_by_id(index)
+        wd.find_elements_by_css_selector("tr[name=entry]")[index].find_element_by_css_selector("img[title=Edit]").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("middlename").clear()
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.name)
         wd.find_element_by_name("middlename").send_keys(contact.middlename)
         wd.find_element_by_name("lastname").send_keys(contact.lastname)
