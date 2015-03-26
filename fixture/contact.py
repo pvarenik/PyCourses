@@ -1,5 +1,5 @@
 __author__ = 'pvarenik'
-
+from model.contact import Contact
 
 class ContactHelper:
 
@@ -47,3 +47,19 @@ class ContactHelper:
         wd = self.app.wd
         self.go_to_contacts()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.go_to_contacts()
+        contacts = []
+        for element in wd.find_elements_by_css_selector("tr[name=entry]"):
+            text = element.text
+            if text != '':
+                _name = text.split(" ")[1]
+                _lastneme = text.split(" ")[0]
+            else:
+                _name = ""
+                _lastneme = ""
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            contacts.append(Contact(name=_name, lastname=_lastneme, id=id))
+        return contacts
