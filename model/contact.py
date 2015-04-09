@@ -4,7 +4,7 @@ from sys import maxsize
 class Contact:
 
     def __init__(self, name=None, middlename=None, lastname=None, nickname=None, id=None,
-                 homephone=None, workphone=None, mobilephone=None, all_phones_from_home_page=None,
+                 homephone=None, workphone=None, mobilephone=None, secondary=None, all_phones_from_home_page=None,
                  address=None, mail=None, mail2=None, mail3=None, all_mails_from_home_page=None):
         self.name = name
         self.middlename = middlename
@@ -14,6 +14,7 @@ class Contact:
         self.homephone = homephone
         self.workphone = workphone
         self.mobilephone = mobilephone
+        self.secondary = secondary
         self.all_phones_from_home_page = all_phones_from_home_page
         self.address = address
         self.mail = mail

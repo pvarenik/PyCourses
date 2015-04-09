@@ -101,12 +101,13 @@ class ContactHelper:
         homephone = wd.find_element_by_name("home").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
         mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
+        secondary = wd.find_element_by_name("phone2").get_attribute("value")
         mail = wd.find_element_by_name("email").get_attribute("value")
         mail2 = wd.find_element_by_name("email2").get_attribute("value")
         mail3 = wd.find_element_by_name("email3").get_attribute("value")
         address = wd.find_element_by_name("address").get_attribute("value")
         return Contact(name=name, lastname=lastname, id=id,
-                       homephone=homephone, workphone=workphone, mobilephone=mobilephone,
+                       homephone=homephone, workphone=workphone, mobilephone=mobilephone, secondary=secondary,
                        mail=mail, mail2=mail2, mail3=mail3, address=address)
 
     def get_contact_info_from_view_page(self, index):

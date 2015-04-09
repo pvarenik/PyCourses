@@ -25,7 +25,7 @@ def merge_phones_like_home(contact):
     return "\n".join(filter(lambda x: x != "",
                             map(lambda x: clear(x),
                                 filter(lambda x: x is not None,
-                                    [contact.homephone, contact.mobilephone, contact.workphone]))))
+                                    [contact.homephone, contact.mobilephone, contact.workphone, contact.secondary]))))
 
 def merge_mails_like_home(contact):
     return "\n".join(filter(lambda x: x != "",
