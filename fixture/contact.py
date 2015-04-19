@@ -24,24 +24,28 @@ class ContactHelper:
         self.go_to_contacts()
         self.contact_cache = None
 
-    def select_contact_by_id(self, index):
+    def select_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
-    def delete_contact_by_id(self, index):
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_id(id).click()
+
+    def delete_contact_by_id(self, id):
         wd = self.app.wd
         self.go_to_contacts()
         #select
-        self.select_contact_by_id(index)
+        self.select_contact_by_id(id)
         #delete
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.go_to_contacts()
         self.contact_cache = None
 
-    def edit(self, contact, index):
+    def edit(self, contact):
         wd = self.app.wd
-        self.open_contact_to_edit_by_index(index)
+        self.open_contact_to_edit_by_id(contact)
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("middlename").clear()
         wd.find_element_by_name("lastname").clear()
@@ -54,16 +58,23 @@ class ContactHelper:
         self.go_to_contacts()
         self.contact_cache = None
 
+    def open_contact_to_edit_by_id(self, contact):
+        wd = self.app.wd
+        self.go_to_contacts()
+        self.select_contact_by_id(contact.id)
+        wd.find_element_by_id(contact.id).find_element_by_xpath('..').find_element_by_xpath('..').find_element_by_css_selector("img[title=Edit]").click()
+
     def open_contact_to_edit_by_index(self, index):
         wd = self.app.wd
         self.go_to_contacts()
-        self.select_contact_by_id(index)
+        self.select_contact_by_index(index)
         wd.find_elements_by_css_selector("tr[name=entry]")[index].find_element_by_css_selector("img[title=Edit]").click()
+
 
     def open_contact_to_view_by_index(self, index):
         wd = self.app.wd
         self.go_to_contacts()
-        self.select_contact_by_id(index)
+        self.select_contact_by_index(index)
         wd.find_elements_by_css_selector("tr[name=entry]")[index].find_element_by_css_selector("img[title=Details]").click()
 
     def count(self):
