@@ -160,8 +160,8 @@ class ContactHelper:
     def get_contacts_info_from_edit_page(self):
         wd = self.app.wd
         self.go_to_contacts()
-        entries = wd.find_elements_by_name("entry")
         edit_contact_list = []
+        entries = wd.find_elements_by_name("entry")
         for i in range(len(entries)):
             self.open_contact_to_edit_by_index(i)
             name = wd.find_element_by_name("firstname").get_attribute("value")
@@ -179,3 +179,15 @@ class ContactHelper:
                            homephone=homephone, workphone=workphone, mobilephone=mobilephone, secondary=secondary,
                            mail=mail, mail2=mail2, mail3=mail3, address=address))
         return edit_contact_list
+
+    def add_to_group(self, contact, group):
+        wd = self.app.wd
+        self.select_contact_by_id(contact.id)
+        wd.find_element_by_xpath("//select[@name='to_group']//option[contains(text(),'" + group.name + "')]").click()
+        wd.find_element_by_name("add").click()
+
+    def delete_from_group(self, contact, group):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//select[@name='group']//option[contains(text(),'" + group.name + "')]").click()
+        self.select_contact_by_id(contact.id)
+        wd.find_element_by_name("remove").click()
