@@ -23,7 +23,7 @@ for o, a in opts:
         f = a
 
 def random_str(prefix, maxlen):
-    sym = string.ascii_letters + string.digits + string.punctuation + " "*10
+    sym = string.ascii_letters# + string.digits + string.punctuation + " "*10
     return prefix + "".join([random.choice(sym) for i in range(random.randrange(maxlen))])
 
 testdata = [Contact("", "", "", "")] + [
