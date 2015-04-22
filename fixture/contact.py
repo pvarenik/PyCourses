@@ -146,14 +146,14 @@ class ContactHelper:
             id = wd.current_url.split("id=")[-1]
             text = wd.find_element_by_id("content").text
             homephone = ""
-            if hasattr(re.search("H: (.*)", text), 'group'):
-                homephone = re.search("H: (.*)", text).group(1)
+            if hasattr(re.search("\nH: (.*)\n", text), 'group'):
+                homephone = re.search("\nH: (.*)\n", text).group(1)
             workphone = ""
-            if hasattr(re.search("W: (.*)", text), 'group'):
-                workphone = re.search("W: (.*)", text).group(1)
+            if hasattr(re.search("\nW: (.*)\n", text), 'group'):
+                workphone = re.search("\nW: (.*)\n", text).group(1)
             mobilephone = ""
-            if hasattr(re.search("M: (.*)", text), 'group'):
-                mobilephone = re.search("M: (.*)", text).group(1)
+            if hasattr(re.search("\nM: (.*)\n", text), 'group'):
+                mobilephone = re.search("\nM: (.*)\n", text).group(1)
             view_contact_list.append(Contact(id=id, homephone=homephone, workphone=workphone, mobilephone=mobilephone))
         return view_contact_list
 

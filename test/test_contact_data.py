@@ -10,7 +10,7 @@ def test_data_on_home_page(app, db):
         assert contact_from_home_page[i].all_phones_from_home_page == merge_phones_like_home(contacts_from_db[i])
         assert contact_from_home_page[i].name == contacts_from_db[i].name
         assert contact_from_home_page[i].lastname == contacts_from_db[i].lastname
-        assert contact_from_home_page[i].address == contacts_from_db[i].address
+        assert contact_from_home_page[i].address == contacts_from_db[i].address.replace("\r\n", "\n")
         assert contact_from_home_page[i].all_mails_from_home_page == merge_mails_like_home(contacts_from_db[i])
 
 
@@ -22,7 +22,7 @@ def test_data_on_edit_page(app, db):
     for i in range(len(contacts_from_db)):
         assert contacts_from_db[i].name == contact_from_edit_page[i].name
         assert contacts_from_db[i].lastname == contact_from_edit_page[i].lastname
-        assert contacts_from_db[i].address == contact_from_edit_page[i].address
+        assert contacts_from_db[i].address.replace("\r\n", "\n") == contact_from_edit_page[i].address
         assert contacts_from_db[i].mail == contact_from_edit_page[i].mail
         assert contacts_from_db[i].mail2 == contact_from_edit_page[i].mail2
         assert contacts_from_db[i].mail3 == contact_from_edit_page[i].mail3
