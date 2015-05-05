@@ -1,0 +1,57 @@
+Started by user anonymous
+Building in workspace C:\Users\pvarenik\.jenkins\jobs\Address book tests\workspace
+ > git.exe rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/pvarenik/PyCourses/ # timeout=10
+Fetching upstream changes from https://github.com/pvarenik/PyCourses/
+ > git.exe --version # timeout=10
+ > git.exe -c core.askpass=true fetch --tags --progress https://github.com/pvarenik/PyCourses/ +refs/heads/*:refs/remotes/origin/*
+ > git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/origin/master^{commit}" # timeout=10
+Checking out Revision 0a35284458859ff3bd0d685a3cdd8611136bcfa9 (refs/remotes/origin/master)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f 0a35284458859ff3bd0d685a3cdd8611136bcfa9
+ > git.exe rev-list 137703e19feb90e3c00b31a72fa062a40331c130 # timeout=10
+[workspace] $ cmd.exe /c call C:\Users\pvarenik\AppData\Local\Temp\shiningpanda8237825232796513981.bat
+
+C:\Users\pvarenik\.jenkins\jobs\Address book tests\workspace>pip install -r requirements.txt 
+Requirement already satisfied (use --upgrade to upgrade): pytest in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 1))
+Requirement already satisfied (use --upgrade to upgrade): pytest-bdd in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 2))
+Requirement already satisfied (use --upgrade to upgrade): selenium in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 3))
+Requirement already satisfied (use --upgrade to upgrade): jsonpickle in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 4))
+Requirement already satisfied (use --upgrade to upgrade): pony in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 5))
+Requirement already satisfied (use --upgrade to upgrade): pymysql in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 6))
+Requirement already satisfied (use --upgrade to upgrade): mysql-connector-python in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 8))
+Requirement already satisfied (use --upgrade to upgrade): py>=1.4.25 in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from pytest->-r requirements.txt (line 1))
+Requirement already satisfied (use --upgrade to upgrade): colorama in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from pytest->-r requirements.txt (line 1))
+Requirement already satisfied (use --upgrade to upgrade): glob2 in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from pytest-bdd->-r requirements.txt (line 2))
+Requirement already satisfied (use --upgrade to upgrade): Mako in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from pytest-bdd->-r requirements.txt (line 2))
+Requirement already satisfied (use --upgrade to upgrade): parse in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from pytest-bdd->-r requirements.txt (line 2))
+Requirement already satisfied (use --upgrade to upgrade): parse-type in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from pytest-bdd->-r requirements.txt (line 2))
+Requirement already satisfied (use --upgrade to upgrade): six in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from pytest-bdd->-r requirements.txt (line 2))
+Requirement already satisfied (use --upgrade to upgrade): MarkupSafe>=0.9.2 in c:\users\pvarenik\.jenkins\shiningpanda\jobs\eac01139\virtualenvs\d41d8cd9\lib\site-packages (from Mako->pytest-bdd->-r requirements.txt (line 2))
+Cleaning up...
+
+C:\Users\pvarenik\.jenkins\jobs\Address book tests\workspace>py.test --junitxml=report.xml test/ 
+============================= test session starts =============================
+platform win32 -- Python 3.4.3 -- py-1.4.26 -- pytest-2.7.0
+rootdir: C:\Users\pvarenik\.jenkins\jobs\Address book tests\workspace\test, inifile: 
+plugins: bdd
+collected 22 items
+
+test\test_add_contact.py ......
+test\test_add_group.py ......
+test\test_contact_data.py ...
+test\test_contact_group.py ..
+test\test_db_matches_ui.py .
+test\test_del_contact.py .
+test\test_del_group.py .
+test\test_edit_contact.py .
+test\test_edit_group.py .
+
+ generated xml file: C:\Users\pvarenik\.jenkins\jobs\Address book tests\workspace\report.xml 
+========================= 22 passed in 170.77 seconds =========================
+
+C:\Users\pvarenik\.jenkins\jobs\Address book tests\workspace>exit 0 
+Recording test results
+Finished: SUCCESS
