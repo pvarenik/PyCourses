@@ -1,0 +1,8 @@
+pytest
+pytest_bdd
+seenium
+jsonpickle
+pony
+pymysql
+--allow-external mysql-connector-python
+mysql-connector-python
