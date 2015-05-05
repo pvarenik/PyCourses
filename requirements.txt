@@ -1,6 +1,6 @@
 pytest
 pytest_bdd
-seenium
+selenium
 jsonpickle
 pony
 pymysql
