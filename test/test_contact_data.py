@@ -1,17 +1,22 @@
 __author__ = 'pvarenik'
 import re
 from model.contact import Contact
+import pytest
 
 def test_data_on_home_page(app, db):
-    contact_from_home_page = sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
-    contacts_from_db = sorted(db.get_contact_list(), key=Contact.id_or_max)
-    assert len(contact_from_home_page) == len(contacts_from_db)
-    for i in range(len(contacts_from_db)):
-        assert contact_from_home_page[i].all_phones_from_home_page == merge_phones_like_home(contacts_from_db[i])
-        assert contact_from_home_page[i].name == contacts_from_db[i].name
-        assert contact_from_home_page[i].lastname == contacts_from_db[i].lastname
-        assert contact_from_home_page[i].address == contacts_from_db[i].address.replace("\r\n", "\n")
-        assert contact_from_home_page[i].all_mails_from_home_page == merge_mails_like_home(contacts_from_db[i])
+    with pytest.allure.step("Getting contacts from home page"):
+        contact_from_home_page = sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
+    with pytest.allure.step("Getting contacts from DB"):
+        contacts_from_db = sorted(db.get_contact_list(), key=Contact.id_or_max)
+    with pytest.allure.step("Verify length"):
+        assert len(contact_from_home_page) == len(contacts_from_db)
+    with pytest.allure.step("Verify data"):
+         for i in range(len(contacts_from_db)):
+            assert contact_from_home_page[i].all_phones_from_home_page == merge_phones_like_home(contacts_from_db[i])
+            assert contact_from_home_page[i].name == contacts_from_db[i].name
+            assert contact_from_home_page[i].lastname == contacts_from_db[i].lastname
+            assert contact_from_home_page[i].address == contacts_from_db[i].address.replace("\r\n", "\n")
+            assert contact_from_home_page[i].all_mails_from_home_page == merge_mails_like_home(contacts_from_db[i])
 
 
 
